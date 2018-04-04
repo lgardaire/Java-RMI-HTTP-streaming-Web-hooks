@@ -43,6 +43,17 @@ public class PubSubServerImpl extends UnicastRemoteObject implements PubSubServe
     }
 
     public boolean unsubscribe(String url, int port) throws RemoteException {
+        try {
+            ClientHook client = (ClientHook) Naming.lookup(url);
+            if (this.clients.contains(client)){
+                this.clients.remove(client);
+                return true;
+            } else {
+                System.out.println("[ERROR] Client not found : cannot unsubscribe");
+            }
+        } catch (NotBoundException | MalformedURLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 }
