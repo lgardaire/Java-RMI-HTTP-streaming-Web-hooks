@@ -21,12 +21,12 @@ public class Launcher {
 			Naming.rebind(url, server);
 			System.out.println("[INFO] Service is up on port 1099 at " + url);
 			while (true) {
-				System.out.print("message >");
+				System.out.print("message > ");
 				server.publish(Launcher.sendMessage());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Problem...");
+			System.err.println("[ERROR] Problem when launching the server");
 		}
 
 

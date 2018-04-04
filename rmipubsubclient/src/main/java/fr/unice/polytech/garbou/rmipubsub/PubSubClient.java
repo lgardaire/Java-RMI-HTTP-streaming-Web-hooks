@@ -30,7 +30,7 @@ public class PubSubClient extends UnicastRemoteObject implements ClientHook {
 			System.out.println("[INFO] Service is up on port " + portClient + " at " + url);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Problem...");
+			System.err.println("[ERROR] Problem when launching the server");
 		}
 
 		try {
