@@ -29,13 +29,12 @@ public class PubSubServerImpl extends UnicastRemoteObject implements PubSubServe
 	}
 
 	public boolean subscribe(ClientHook client) throws RemoteException {
-		//System.out.println("ServerLog : A client joined : " + url + ":" + port);
 			this.clients.add(client);
 			this.publish("A client joined : " + client);
 			return true;
 	}
 
-	public boolean unsubscribe(String url, int port) throws RemoteException {
-		return false;
-	}
+    public boolean unsubscribe(ClientHook client) throws RemoteException {
+			return this.clients.remove(client);
+    }
 }
