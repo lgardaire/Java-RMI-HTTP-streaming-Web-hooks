@@ -15,7 +15,7 @@ public class PubSubClient {
 		try {
 			server = (PubSubServer) Naming.lookup(url);
 			System.out.println(server);
-			//server.subscribe();
+			server.subscribe();
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {

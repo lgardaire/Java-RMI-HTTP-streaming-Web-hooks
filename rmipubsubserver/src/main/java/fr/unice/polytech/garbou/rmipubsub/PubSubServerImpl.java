@@ -1,6 +1,8 @@
 package fr.unice.polytech.garbou.rmipubsub;
 
 import java.rmi.RemoteException;
+import java.rmi.server.RemoteServer;
+import java.rmi.server.ServerNotActiveException;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
@@ -12,7 +14,12 @@ public class PubSubServerImpl extends UnicastRemoteObject implements PubSubServe
 	}
 
 	public boolean subscribe() throws RemoteException {
-		System.out.println("A client joined");
+		try {
+			String ref = getClientHost();
+			System.out.println("A client referenced : " + ref + "joined with " + this);
+		} catch (ServerNotActiveException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 }
