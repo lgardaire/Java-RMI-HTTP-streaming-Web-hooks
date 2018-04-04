@@ -8,37 +8,39 @@ import java.rmi.RemoteException;
 import java.rmi.server.RemoteServer;
 import java.rmi.server.ServerNotActiveException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by Nassim B on 4/4/18.
  */
 public class PubSubServerImpl extends UnicastRemoteObject implements PubSubServer {
-	HashMap<String, ClientHook> clients = new HashMap<String, ClientHook>();
+	List<ClientHook> clients = new ArrayList<>();
 
 	protected PubSubServerImpl() throws RemoteException {
 	}
 
-	private void publish() {
-		for (String set: this.clients.keySet()) {
+	private void publish(String message) {
+
+		for (ClientHook client : this.clients) {
 			try {
-				this.clients.get(set).receive();
+				client.receive(message);
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
-
 		}
 	}
 
 	public boolean subscribe(String url, int port) throws RemoteException {
-		System.out.println("A client joined : " + url);
+		System.out.println("ServerLog : A client joined : " + url + ":" + port);
 		ClientHook client = null;
 
 		try {
 			client = (ClientHook) Naming.lookup(url);
-			this.clients.put(url, client);
-			this.publish();
+			this.clients.add(client);
+			this.publish("A client joined : " + url + ":" + port);
 			return true;
 		} catch (NotBoundException e) {
 			e.printStackTrace();

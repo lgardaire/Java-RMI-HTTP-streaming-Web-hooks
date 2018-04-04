@@ -7,5 +7,5 @@ import java.rmi.RemoteException;
  * Created by Nassim B on 4/4/18.
  */
 public interface ClientHook extends Remote {
-	boolean receive() throws RemoteException;
+	boolean receive(String message) throws RemoteException;
 }

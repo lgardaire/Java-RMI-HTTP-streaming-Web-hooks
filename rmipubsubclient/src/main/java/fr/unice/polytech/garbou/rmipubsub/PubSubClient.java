@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Scanner;
 
 /**
  * Created by Nassim B on 4/4/18.
@@ -18,12 +19,15 @@ public class PubSubClient extends UnicastRemoteObject implements ClientHook {
 		PubSubServer server = null;
 		String url = "rmi://localhost/PubSubServer";
 		String urlClient = "rmi://localhost/PubSubClient";
-		int portClient = 15000;
+		int portClient;
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Which port : ");
+		portClient = scanner.nextInt();
 
 		try {
 			LocateRegistry.createRegistry(portClient);
 			Naming.rebind(urlClient, new PubSubClient());
-			System.out.println("[INFO] Service is up on port 15000 at " + url);
+			System.out.println("[INFO] Service is up on port " + portClient + " at " + url);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Problem...");
@@ -42,8 +46,8 @@ public class PubSubClient extends UnicastRemoteObject implements ClientHook {
 		}
 	}
 
-	public boolean receive() throws RemoteException {
-		System.out.println("Message received");
+	public boolean receive(String message) throws RemoteException {
+		System.out.println(message);
 		return false;
 	}
 }
