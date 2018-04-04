@@ -1,4 +1,4 @@
-package fr.unice.polytech.garbou.rmipubsubserver;
+package fr.unice.polytech.garbou.rmipubsubclient;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
