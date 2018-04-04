@@ -22,7 +22,7 @@ public class PubSubServerImpl extends UnicastRemoteObject implements PubSubServe
 	protected PubSubServerImpl() throws RemoteException {
 	}
 
-	private void publish(String message) {
+	public void publish(String message) {
 
 		for (ClientHook client : this.clients) {
 			try {
@@ -34,7 +34,7 @@ public class PubSubServerImpl extends UnicastRemoteObject implements PubSubServe
 	}
 
 	public boolean subscribe(String url, int port) throws RemoteException {
-		System.out.println("ServerLog : A client joined : " + url + ":" + port);
+		//System.out.println("ServerLog : A client joined : " + url + ":" + port);
 		ClientHook client = null;
 
 		try {
