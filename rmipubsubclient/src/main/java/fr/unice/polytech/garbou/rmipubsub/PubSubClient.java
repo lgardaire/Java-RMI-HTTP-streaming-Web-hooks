@@ -1,4 +1,4 @@
-package fr.unice.polytech.garbou.rmipubsubclient;
+package fr.unice.polytech.garbou.rmipubsub;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;

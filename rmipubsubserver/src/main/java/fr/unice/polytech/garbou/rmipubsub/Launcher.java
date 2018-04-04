@@ -1,4 +1,4 @@
-package fr.unice.polytech.garbou.rmipubsubserver;
+package fr.unice.polytech.garbou.rmipubsub;
 
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
