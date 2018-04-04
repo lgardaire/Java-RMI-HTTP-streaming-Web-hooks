@@ -18,25 +18,12 @@ public class PubSubClient extends UnicastRemoteObject implements ClientHook {
 	public static void main(String[] args) {
 		PubSubServer server = null;
 		String url = "rmi://localhost/PubSubServer";
-		String urlClient = "rmi://localhost/PubSubClient";
-		int portClient;
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("Which port : ");
-		portClient = scanner.nextInt();
 
 		try {
-			LocateRegistry.createRegistry(portClient);
-			Naming.rebind(urlClient, new PubSubClient());
-			System.out.println("[INFO] Service is up on port " + portClient + " at " + url);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("Problem...");
-		}
-
-		try {
+			ClientHook client = new PubSubClient();
 			server = (PubSubServer) Naming.lookup(url);
-			System.out.println(server);
-			server.subscribe(urlClient, portClient);
+			System.out.println("Webhook server : " + server);
+			server.subscribe(client);
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
