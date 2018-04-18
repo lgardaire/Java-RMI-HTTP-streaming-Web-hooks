@@ -34,4 +34,8 @@ public class PubSubServerImpl extends UnicastRemoteObject implements PubSubServe
     public boolean unsubscribe(ClientHook client) throws RemoteException {
         return this.clients.remove(client);
     }
+
+    public int howManyClients() {
+        return this.clients.size();
+    }
 }
