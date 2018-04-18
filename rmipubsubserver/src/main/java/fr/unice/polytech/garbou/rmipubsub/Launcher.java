@@ -47,8 +47,8 @@ class SendTime extends TimerTask {
 	public void run() {
 		messageCounter++;
 		String time = LocalDateTime.now().format(formatter);
-		String message = "Message n°" + messageCounter + " " + time + " to " + this.server.howManyClients() + " clients";
+		String message = "Message n°" + messageCounter + " " + time + " to " + this.server.howManyClients() + " client(s)";
 		this.server.publish(message);
-		System.out.println("Server ## Message sended : " + message);
+		System.out.println("Server ## Message sent : " + message);
 	}
 }
