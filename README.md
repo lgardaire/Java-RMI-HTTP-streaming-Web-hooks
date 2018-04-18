@@ -12,10 +12,8 @@ The two developers of this team are :
 
 ## Project structure
 This project is divided in two different parts :
-- the server where the clients can connect
-It is in the directory `rmipubsubserver`.
-- the client implementation
-It is in the directory `rmipubsubclient`.
+- the server where the clients can connect : is in the directory `rmipubsubserver`.
+- the client implementation : is in the directory `rmipubsubclient`.
 
 ## How to build the project
 Use `mvn install` inside both folders : rmipubsubserver and rmipubsubclient
