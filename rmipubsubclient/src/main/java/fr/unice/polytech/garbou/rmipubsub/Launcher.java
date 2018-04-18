@@ -11,21 +11,21 @@ import java.rmi.RemoteException;
  */
 public class Launcher {
 
-	public static void main(String[] args) {
-    	PubSubServer server = null;
-		String url = "rmi://localhost/PubSubServer";
+    public static void main(String[] args) {
+        PubSubServer server = null;
+        String url = "rmi://localhost/PubSubServer";
 
-		try {
-			server = (PubSubServer) Naming.lookup(url);
-			System.out.println("Webhook server : " + server);
-			ClientHook client = new Client();
-			server.subscribe(client);
-		} catch (NotBoundException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
+        try {
+            server = (PubSubServer) Naming.lookup(url);
+            System.out.println("Webhook server : " + server);
+            ClientHook client = new Client();
+            server.subscribe(client);
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 }
