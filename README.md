@@ -17,7 +17,11 @@ It is in the directory `rmipubsubserver`.
 - the client implementation
 It is in the directory `rmipubsubclient`.
 
+## How to build the project
+Use `mvn install` inside both folders : rmipubsubserver and rmipubsubclient
+
 ## How to run the project
-Use the 2 `Launcher` classes to run the server and the client
+
+Use `mvn exec:java` firstly on server and on client how many times you want.
 
 The project handles concurrency on clients, so you can run multiple clients.

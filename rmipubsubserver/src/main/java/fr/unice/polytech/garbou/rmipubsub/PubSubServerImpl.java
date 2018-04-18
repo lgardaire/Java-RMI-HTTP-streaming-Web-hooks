@@ -2,8 +2,12 @@ package fr.unice.polytech.garbou.rmipubsub;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Semaphore;
 
 /**
  * Created by Nassim B on 4/4/18.
@@ -16,18 +20,22 @@ public class PubSubServerImpl extends UnicastRemoteObject implements PubSubServe
 
     public void publish(String message) {
 
-        for (ClientHook client : this.clients) {
+        Iterator clientIT = this.clients.iterator();
+
+        while (clientIT.hasNext()) {
+            ClientHook client = (ClientHook) clientIT.next();
             try {
                 client.receive(message);
             } catch (RemoteException e) {
-                e.printStackTrace();
+                System.err.println("A client can't be joined, he'll be removed from client list");
+                clientIT.remove();
             }
         }
     }
 
     public boolean subscribe(ClientHook client) throws RemoteException {
         this.clients.add(client);
-        this.publish("A client joined : " + client);
+        System.out.println("A new client joined");
         return true;
     }
 

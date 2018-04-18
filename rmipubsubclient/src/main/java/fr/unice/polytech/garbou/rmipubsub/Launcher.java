@@ -20,6 +20,7 @@ public class Launcher {
             System.out.println("Webhook server : " + server);
             ClientHook client = new Client();
             server.subscribe(client);
+            while(true);
         } catch (NotBoundException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
